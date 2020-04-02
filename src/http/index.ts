@@ -1,9 +1,9 @@
-import Service from './service'
+import { Api } from './service'
 
 export default class HttpService {
   axiosInstance: object
   constructor () {
-    this.axiosInstance = new Service({
+    this.axiosInstance = new Api({
       url: '/',
       method: 'get',
       baseURL: './',
@@ -11,7 +11,7 @@ export default class HttpService {
         'Content-Type': 'application/json'
       },
       timeout: 3000
-    }).getService()
+    })
   }
 
   init () {
