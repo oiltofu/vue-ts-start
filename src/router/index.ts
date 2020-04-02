@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { Vue } from 'vue-property-decorator'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
