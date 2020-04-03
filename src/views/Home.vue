@@ -1,22 +1,28 @@
 <template>
   <div class="home"
-    @click="test">
+    @click="login">
     home
   </div>
 </template>
 
 <script lang="ts">
 // @ is an alias to /src
-import { Vue } from 'vue-property-decorator'
-import HttpService from '../http'
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
+
+@Component
 export default class Home extends Vue {
   created () {
-    console.log('home created')
+    this.login()
   }
 
-  test () {
-    const httpService = new HttpService()
-    httpService.init()
+  login () {
+    console.log(this)
+    const params = {
+      username: 'h5',
+      password: 's'
+    }
+    this.$api.post('/api/user/login', params)
   }
 }
 </script>
