@@ -17,7 +17,6 @@ export default class Home extends Vue {
   }
 
   login () {
-    console.log(this)
     const params = {
       username: 'h5',
       password: 's'

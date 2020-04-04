@@ -5,8 +5,7 @@ import store from './store'
 import { Api } from './utils/api'
 
 Vue.config.productionTip = false
-console.dir(new Api().getInstance())
-Vue.prototype.$api = new Api().getInstance()
+Vue.prototype.$api = new Api()
 
 new Vue({
   router,

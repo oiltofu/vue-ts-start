@@ -13,7 +13,7 @@ export class Api {
     this.refreshToken = false
     this.hotelcode = sessionStorage.getItem('hotelcode')
     this.credential = sessionStorage.getItem('credential')
-    this.baseURL = process.env.BASE_API
+    this.baseURL = process.env.VUE_APP_BASE_API
     this.timeout = 3000
     this.waitApi = []
     this.api = axios.create(config)
@@ -52,10 +52,6 @@ export class Api {
     }, error => {
       return Promise.reject(error)
     })
-  }
-
-  public getInstance () {
-    return this.api
   }
 
   public request<T, R = AxiosResponse<T>> (config: AxiosRequestConfig): Promise<R> {
