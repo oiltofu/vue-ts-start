@@ -17,11 +17,9 @@ export default class Home extends Vue {
   }
 
   login () {
-    const params = {
-      username: 'h5',
-      password: 's'
-    }
-    this.$api.post('/api/user/login', params)
+    this.$api.get('/booking/reservation/rate_categories').then(data => {
+      console.log(data)
+    })
   }
 }
 </script>

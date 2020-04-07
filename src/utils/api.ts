@@ -1,5 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosPromise } from 'axios'
 
+interface ReqParams {
+  [keyName: string]: string | number | object;
+}
+
 export class Api {
   private api: AxiosInstance
   private refreshToken: boolean
@@ -12,8 +16,9 @@ export class Api {
   public constructor (config?: AxiosRequestConfig) {
     this.refreshToken = false
     this.hotelcode = sessionStorage.getItem('hotelcode')
+    // this.credential = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNo0zF0KgCAQBOC7zLPBumqUt5FcKOiPrAiiu2dCTwMzzHfjSLLB3yXnMAk8egeFftll7Jb4FZqYSJNpct9tEmXehzB-g2tqZjbsbK1bIjwKQ0rFqDJ4ZlshHPFX5Vrhy8swafu8AAAA__8.FvzWitiwqc3aUsTsl5e9aufgAvW3r6c0iaRDCSdLNWI'
     this.credential = sessionStorage.getItem('credential')
-    this.baseURL = process.env.VUE_APP_BASE_API
+    this.baseURL = process.env.VUE_APP_BASE_URL
     this.timeout = 3000
     this.waitApi = []
     this.api = axios.create(config)
@@ -41,6 +46,7 @@ export class Api {
         return Promise.reject(data)
       } else if (data.code === 9998) {
         // 刷新token
+        debugger
         if (!this.refreshToken) this.refreshTokenRequest()
         this.refreshToken = true
         // 挂起api
@@ -58,16 +64,18 @@ export class Api {
     return this.api.request(config)
   }
 
-  public get<T, R = AxiosResponse<T>> (url: string, config?: AxiosRequestConfig): Promise<R> {
+  public get<T, R = AxiosResponse<T>> (url: string, params?: ReqParams): Promise<R> {
+    const config: AxiosRequestConfig = {}
+    config.params = params
     return this.api.get(url, config)
   }
 
-  public post<T, R = AxiosResponse<T>> (url: string, data?: object, config?: AxiosRequestConfig): Promise<R> {
-    return this.api.post(url, data, config)
+  public post<T, R = AxiosResponse<T>> (url: string, data?: object): Promise<R> {
+    return this.api.post(url, data)
   }
 
   public refreshTokenRequest () {
-    this.api.post('/api/user/token/refresh').then(res => {
+    this.api.post('/user/token/refresh').then(res => {
       this.refreshToken = false
       this.credential = res.data.credential
       sessionStorage.setItem('credential', res.data.credential)
