@@ -16,8 +16,8 @@ export class Api {
   public constructor (config?: AxiosRequestConfig) {
     this.refreshToken = false
     this.hotelcode = sessionStorage.getItem('hotelcode')
-    // this.credential = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNo0zF0KgCAQBOC7zLPBumqUt5FcKOiPrAiiu2dCTwMzzHfjSLLB3yXnMAk8egeFftll7Jb4FZqYSJNpct9tEmXehzB-g2tqZjbsbK1bIjwKQ0rFqDJ4ZlshHPFX5Vrhy8swafu8AAAA__8.FvzWitiwqc3aUsTsl5e9aufgAvW3r6c0iaRDCSdLNWI'
-    this.credential = sessionStorage.getItem('credential')
+    this.credential = 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNo0zF0KgCAQBOC7zLOBu2WZt5FcKOiPrAiiu2dCTwMzzHfjiLLB3TlnPwkcegOFftll7JbwFaRZa9KlTX23SZB5H_z4DcbWXFmuW2q5oQaPwhBjNooEnslW8Ef4VblWuPwyTKZ6XgAAAP__.VhsnOTDx1CvdGwf2a7KPbONmKocrcPsZCtbjdCtmaCU'
+    // this.credential = sessionStorage.getItem('credential')
     this.baseURL = process.env.VUE_APP_BASE_URL
     this.timeout = 3000
     this.waitApi = []

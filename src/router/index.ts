@@ -1,14 +1,14 @@
 import { Vue } from 'vue-property-decorator'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import layout from '../layout/index.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'layout',
+    component: layout
   }
   // {
   //   path: '/about',
